@@ -52,7 +52,7 @@ def get_relevant_tasks(
 def count_deadline_metric(
     task: Task, start_date: datetime, end_date: datetime
 ) -> float:
-    """Compute metric based on task deadline and time interval.
+    """Compute metric based on task deadline and created_date.
 
     :param task: Task for metric computation
     :type task: Task
@@ -130,9 +130,9 @@ def sort_tasks(
         beginning
     :rtype: List[Task]
     """
-    # relevant_tasks = get_relevant_tasks(tasks, start_date, end_date)
+    relevant_tasks = get_relevant_tasks(tasks, start_date, end_date)
     return sorted(
-        tasks,
+        relevant_tasks,
         key=lambda x: count_priority_metric(x, start_date, end_date),
         reverse=True,
     )
